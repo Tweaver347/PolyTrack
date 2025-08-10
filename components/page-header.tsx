@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react"
+import type { LucideIcon } from 'lucide-react'
 
 interface PageHeaderProps {
   title: string
@@ -6,11 +6,19 @@ interface PageHeaderProps {
   icon: LucideIcon
 }
 
-export function PageHeader({ title, subtitle, icon: _Icon }: PageHeaderProps) {
+/**
+ * The page header displays a title with an icon and a subtitle underneath.
+ * It is used at the top of each page to provide context about the
+ * content. Icons are passed in from lucide-react.
+ */
+export default function PageHeader({ title, subtitle, icon: Icon }: PageHeaderProps) {
   return (
     <div className="mb-6">
-      <h1 className="text-2xl font-bold text-gray-800 dark:text-white">{title}</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400">{subtitle}</p>
+      <h2 className="text-2xl font-bold flex items-center gap-2">
+        <Icon className="h-6 w-6 text-poly-blue" />
+        {title}
+      </h2>
+      <p className="text-sm text-gray-600 dark:text-gray-400">{subtitle}</p>
     </div>
   )
 }

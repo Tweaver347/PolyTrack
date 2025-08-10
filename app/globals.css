@@ -2,74 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+/*
+  Global CSS variables for the PolyTrack app. The variables mirror the
+  colour palette defined in the original v0 prototype. Adjust as needed
+  to tweak your theme. When dark mode is enabled the colours shift
+  slightly to reduce brightness.
+*/
+:root {
+  --primary: #00c0ff; /* electric blue */
+  --accent: #aaff00;  /* neon green */
+  --font-inter: 'Inter';
+  --font-playfair: 'Playfair Display';
+}
+
+@media (prefers-color-scheme: dark) {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 210 100% 50%; /* Electric Blue */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 98 100% 54%; /* Neon Green */
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 50%;
-    --radius: 0.75rem;
-
-    --font-inter: "Inter", sans-serif;
-    --font-montserrat: "Montserrat", sans-serif;
-    --font-roboto-mono: "Roboto Mono", monospace;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 100% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 98 100% 54%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 210 100% 50%;
+    --primary: #0097cc;
+    --accent: #88cc00;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-poly-white text-foreground;
-    font-family: var(--font-inter);
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-heading;
-  }
-  .dark body {
-    @apply bg-poly-dark text-slate-50;
-  }
+body {
+  @apply bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-50;
+  font-family: var(--font-inter), sans-serif;
 }

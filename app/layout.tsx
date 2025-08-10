@@ -1,42 +1,34 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter, Montserrat, Roboto_Mono } from "next/font/google"
-import "./globals.css"
-import { cn } from "@/lib/utils"
-import { Sidebar } from "@/components/layout/sidebar"
-import { Header } from "@/components/layout/header"
-import { NfcButton } from "@/components/nfc-button"
-import { Toaster } from "@/components/ui/toaster"
+import '../app/globals.css'
+import Sidebar from '../components/sidebar'
+import Providers from '../components/providers'
+import Header from '../components/header' // <-- add this
+import { Inter, Playfair_Display } from 'next/font/google'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
-const montserrat = Montserrat({ subsets: ["latin"], weight: "700", variable: "--font-montserrat" })
-const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
 
-export const metadata: Metadata = {
-  title: "PolyTrack - Smart 3D Printing Inventory",
-  description: "A smart inventory manager for 3D printing materials like filament and resin.",
-    generator: 'v0.dev'
+export const metadata = {
+  title: 'PolyTrack',
+  description: 'A 3D printing material management app',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light">
-      <body
-        className={cn("min-h-screen font-sans antialiased", inter.variable, montserrat.variable, robotoMono.variable)}
-      >
-        <div className="flex min-h-screen w-full">
-          <Sidebar />
-          <div className="flex flex-1 flex-col">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="min-h-screen flex bg-gray-950 text-gray-100">
+        {/* Sidebar stays constant across pages */}
+        <Sidebar />
+
+        {/* Right pane: header + page content */}
+        <div className="flex-1 flex flex-col">
+          <Providers>
+            {/* Top bar with AuthButton inside Header (client component) */}
             <Header />
-            <main className="flex-1 p-4 md:p-6 lg:p-8 bg-poly-white dark:bg-poly-dark/60">{children}</main>
-          </div>
+            <main className="flex-1 overflow-y-auto p-6">
+              {children}
+            </main>
+          </Providers>
         </div>
-        <NfcButton />
-        <Toaster />
       </body>
     </html>
   )
